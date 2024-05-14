@@ -1,7 +1,7 @@
 package main
 
 import (
-	"crypto/sha256"
+	"crypto/sha512"
 	"encoding/json"
 	"fmt"
 	"strconv"
@@ -40,7 +40,7 @@ func (block Block) calcHash() string {
 	}
 	
 	byteData := []byte(block.prevHash + string(data) + block.timestamp.String() + strconv.Itoa(block.pow))
-	blockHash := sha256.Sum256(byteData)
+	blockHash := sha512.Sum512(byteData)
 	return fmt.Sprintf("%x", blockHash)
 
 }
